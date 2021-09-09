@@ -1,0 +1,59 @@
+type Course {
+	_id: ID
+	title: String
+	description: String
+	teacher: String
+	topic: String
+	people: [Student]
+}
+
+type Student {
+	_id: ID!
+	name: String!
+	email: String!
+}
+
+type Query {
+	"Return an array of courses"
+	getCourses: [Course]
+	"Return a course by its id"
+	getCourseById(id: ID!): Course
+	"Return an array of courses"
+	getStudents: [Student]
+	"Return a course by its id"
+	getStudentById(id: ID!): Student
+}
+
+input CourseEditInput {
+	title: String
+	description: String
+	teacher: String
+	topic: String
+}
+input CourseInput {
+	title: String!
+	description: String!
+	teacher: String
+	topic: String
+}
+
+input StudentInput {
+	name: String!
+	email: String!
+}
+input StudentEditInput {
+	name: String
+	email: String
+}
+
+type Mutation {
+	"Create a course"
+	createCourse(input: CourseInput!): Course
+	"Edit a Course"
+	editCourse(id: ID!, input: CourseEditInput!): Course
+	"Create a student"
+	createStudent(input: StudentInput!): Student
+	"Edit a Student"
+	editStudent(input: StudentEditInput!): Student
+	addStudentToCourse(idCourse: ID!, idStudent: ID!): Course
+}
