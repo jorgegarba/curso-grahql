@@ -93,7 +93,7 @@ module.exports = {
 		console.log(person);
 		let finalPeople = [idStudent];
 		if (course.people) {
-			finalPeople = [...course.people, idStudent];
+			finalPeople = [...course.people.map((s) => ObjectId(s._id)), idStudent];
 		}
 		return {
 			...course,
